@@ -1,0 +1,29 @@
+References: https://www.youtube.com/watch?v=XmzBREkK8kY
+
+Recap of Eulerian Fluid Sim:
+    - use grid with two types of cells, solid and fluid
+    - fluid is stored as velicty field
+    - use grid where two components of velocity are stored in different location
+    - horizontal locations are sotred at center of vertical face
+    - vertical locations are stored at center of horizontal face
+    - first add gravity
+    - then make the fluid incompressible by making sure the amount of fluid that enters is the same that leaves
+    - then utilize advection by moving along velocity feild
+
+Two Phase Simulation:
+    - use three types of cells solid, fuld and gas
+    - density of water is about 1000x greater than air
+    - treat air as nothing
+    - the velocity between air cells is undefined which is not the same as zero
+    - simulator skips air cells, and do not access velocity between air cells because they are undefined
+    - use particles to differentiate between air cells and fluid cells
+    - water cells are just the non-solid cells that have particles in them
+    - PIC: Particle In Cell method
+
+Overview:
+    1. Simulate Particles
+    2. Transfer velocities from particles to grid
+    3. Make the grid velocities incompressible
+    4. Transfer velocities from grid to particles
+
+    * Because the particles are the ones carrying the velocity, the advection step can be skipped

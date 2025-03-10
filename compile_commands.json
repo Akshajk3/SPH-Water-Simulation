@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -I/opt/homebrew/include -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk -o CMakeFiles/main.dir/Main.cpp.o -c \"/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/Main.cpp\"",
+  "file": "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/Main.cpp",
+  "output": "CMakeFiles/main.dir/Main.cpp.o"
+},
+{
+  "directory": "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -I/opt/homebrew/include -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk -o CMakeFiles/main.dir/Renderer.cpp.o -c \"/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/Renderer.cpp\"",
+  "file": "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/Renderer.cpp",
+  "output": "CMakeFiles/main.dir/Renderer.cpp.o"
+}
+]
