@@ -39,3 +39,32 @@ void Renderer::Destroy()
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
 }
+
+void Renderer::DrawParticle(int x_center, int y_center, int radius)
+{
+  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+
+  int x = radius;
+  int y = 0;
+  int decision = 1 - radius;
+
+  while (x >= y)
+  {
+    SDL_RenderDrawLine(renderer, x_center - x, y_center + y, x_center + x, y_center + y);
+    SDL_RenderDrawLine(renderer, x_center - x, y_center - y, x_center + x, y_center - y);
+    SDL_RenderDrawLine(renderer, x_center - y, y_center + x, x_center + y, y_center + x);
+    SDL_RenderDrawLine(renderer, x_center - y, y_center - x, x_center + x, y_center - x);
+
+    y++;
+
+    if (decision <= 0)
+    {
+      decision += 2 * y + 1;
+    }
+    else
+    {
+      x--;
+      decision += 2 * (y - x) + x;
+    }
+  }
+}

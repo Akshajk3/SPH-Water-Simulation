@@ -17,6 +17,8 @@ class Renderer
     void Display();
     void Destroy();
 
+    void DrawParticle(int x, int y, int radius);
+
   private:
     SDL_Window* window;
     SDL_Renderer* renderer;

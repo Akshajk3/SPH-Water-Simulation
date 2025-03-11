@@ -31,6 +31,7 @@ int main()
     }
 
     renderer.Clear();
+    renderer.DrawParticle(800/2, 800/2, 10);
     renderer.Display();
   }
 
