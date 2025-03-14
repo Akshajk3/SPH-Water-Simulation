@@ -10,7 +10,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Add the source files
 set(SOURCE_FILES
     Main.cpp
-    Renderer.cpp 
+    Renderer.cpp
+    Particle.cpp
+    Fluid.cpp 
 )
 
 # Add the executable

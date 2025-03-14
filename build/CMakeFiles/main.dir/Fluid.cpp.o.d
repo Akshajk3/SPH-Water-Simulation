@@ -1,5 +1,6 @@
-CMakeFiles/main.dir/Main.cpp.o: \
-  /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/Main.cpp \
+CMakeFiles/main.dir/Fluid.cpp.o: \
+  /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/Fluid.cpp \
+  /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/Fluid.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/__assert \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/__assertion_handler \
@@ -1019,6 +1020,5 @@ CMakeFiles/main.dir/Main.cpp.o: \
   /opt/homebrew/include/SDL2/SDL_locale.h \
   /opt/homebrew/include/SDL2/SDL_misc.h \
   /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/Renderer.h \
-  /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/Fluid.h \
   /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/Particle.h \
   /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/vec2.h

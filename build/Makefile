@@ -129,6 +129,30 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+Fluid.o: Fluid.cpp.o
+.PHONY : Fluid.o
+
+# target to build an object file
+Fluid.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Fluid.cpp.o
+.PHONY : Fluid.cpp.o
+
+Fluid.i: Fluid.cpp.i
+.PHONY : Fluid.i
+
+# target to preprocess a source file
+Fluid.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Fluid.cpp.i
+.PHONY : Fluid.cpp.i
+
+Fluid.s: Fluid.cpp.s
+.PHONY : Fluid.s
+
+# target to generate assembly for a file
+Fluid.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Fluid.cpp.s
+.PHONY : Fluid.cpp.s
+
 Main.o: Main.cpp.o
 .PHONY : Main.o
 
@@ -152,6 +176,30 @@ Main.s: Main.cpp.s
 Main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Main.cpp.s
 .PHONY : Main.cpp.s
+
+Particle.o: Particle.cpp.o
+.PHONY : Particle.o
+
+# target to build an object file
+Particle.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Particle.cpp.o
+.PHONY : Particle.cpp.o
+
+Particle.i: Particle.cpp.i
+.PHONY : Particle.i
+
+# target to preprocess a source file
+Particle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Particle.cpp.i
+.PHONY : Particle.cpp.i
+
+Particle.s: Particle.cpp.s
+.PHONY : Particle.s
+
+# target to generate assembly for a file
+Particle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Particle.cpp.s
+.PHONY : Particle.cpp.s
 
 Renderer.o: Renderer.cpp.o
 .PHONY : Renderer.o
@@ -186,9 +234,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... main"
+	@echo "... Fluid.o"
+	@echo "... Fluid.i"
+	@echo "... Fluid.s"
 	@echo "... Main.o"
 	@echo "... Main.i"
 	@echo "... Main.s"
+	@echo "... Particle.o"
+	@echo "... Particle.i"
+	@echo "... Particle.s"
 	@echo "... Renderer.o"
 	@echo "... Renderer.i"
 	@echo "... Renderer.s"
