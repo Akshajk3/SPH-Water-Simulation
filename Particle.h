@@ -17,11 +17,13 @@ public:
 
 private:
 
-  void KeepInBounds();
+  void KeepInBounds(float deltaTime);
 
   vec2 pos;
   vec2 vel;
   int radius;
   float terminalVelocity = 5.0f;
+
+public:
   float dampeningCoeff = 0.80f;
 };

@@ -21,5 +21,5 @@ private:
   int fluidHeight;
   int particleSize;
 
-  std::vector<Particle> particles;
+  std::vector<Particle*> particles;
 };

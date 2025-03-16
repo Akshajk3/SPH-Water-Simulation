@@ -12,7 +12,7 @@ void Particle::Update(float gravity, float deltaTime)
   float vertical_vel = std::min(vel.y + gravity * deltaTime, terminalVelocity);
   vel = vec2(0, vertical_vel);
   //std::cout << vertical_vel << std::endl;
-  KeepInBounds();
+  KeepInBounds(deltaTime);
   pos = pos + vel;
 }
 
@@ -21,7 +21,7 @@ void Particle::Render(Renderer* renderer)
   renderer->DrawParticle(pos.x, pos.y, radius);
 }
 
-void Particle::KeepInBounds()
+void Particle::KeepInBounds(float deltaTime)
 {
   if (pos.x <= 0)
   {
