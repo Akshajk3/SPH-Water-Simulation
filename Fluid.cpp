@@ -15,12 +15,12 @@ Fluid::Fluid(int width, int height, int particle_size)
 
 void Fluid::Update(float gravity, float deltaTime)
 {
-  for (auto particle : particles)
+  for (auto& particle : particles)
     particle.Update(gravity, deltaTime);
 }
 
 void Fluid::Render(Renderer* renderer)
 {
-  for (auto particle : particles)
+  for (auto& particle : particles)
     particle.Render(renderer);
 }

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <SDL2/SDL.h>
+#include <random>
 
 #include "Renderer.h"
 #include "Particle.h"
