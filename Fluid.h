@@ -15,7 +15,7 @@ public:
 
   void Update(float gravity, float deltaTime);
   void Render(Renderer* renderer);
-
+  void ComputeDensity();
 private:
   int fluidWidth;
   int fluidHeight;

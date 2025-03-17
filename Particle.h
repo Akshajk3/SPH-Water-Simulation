@@ -14,11 +14,13 @@ public:
 
   void Update(float gravity, float deltaTime);
   void Render(Renderer* renderer);
-
+  
+  float density;
 private:
 
   void KeepInBounds(float deltaTime);
 
+public:
   vec2 pos;
   vec2 vel;
   int radius;

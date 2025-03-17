@@ -32,3 +32,26 @@ void Fluid::Render(Renderer* renderer)
   for (auto& particle : particles)
     particle->Render(renderer);
 }
+
+void Fluid::ComputeDensity()
+{
+  float h = smoothingLength;
+  float h2 = h * h;
+
+  for (auto& p_i : particles)
+  {
+    p_i->density = 0.0f;
+
+    for (auto& p_j : particles)
+    {
+      vec2 r_vec = p_i->pos - p_j->pos;
+      float r2 = r_vec.dot(r_vec);
+      
+      if(r2 < h2)
+      {
+        float r = std::sqrt(r2);
+        float W = (315.0f)
+      }
+    }
+  }
+}
