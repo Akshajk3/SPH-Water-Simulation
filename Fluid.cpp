@@ -50,7 +50,7 @@ void Fluid::ComputeDensity()
       if(r2 < h2)
       {
         float r = std::sqrt(r2);
-        float W = (315.0f)
+        float W = (315.0f / (64.0f * M_PI * pow(h, 9))) * pow(h2 - r2, 3);
       }
     }
   }
