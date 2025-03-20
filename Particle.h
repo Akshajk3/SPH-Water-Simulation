@@ -14,8 +14,10 @@ public:
 
   void Update(float gravity, float deltaTime);
   void Render(Renderer* renderer);
-  
+
+public:  
   float density;
+  float pressure;
 private:
 
   void KeepInBounds(float deltaTime);

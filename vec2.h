@@ -88,4 +88,9 @@ struct vec2
   {
     return x * vec.x + y * vec.y;
   }
+
+  vec2 normalize(const vec2& vec) const
+  {
+    return vec2(vec.x / magnitude(vec), vec.y / magnitude(vec));
+  }
 };

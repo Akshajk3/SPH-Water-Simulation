@@ -16,10 +16,14 @@ public:
   void Update(float gravity, float deltaTime);
   void Render(Renderer* renderer);
   void ComputeDensity();
+  void ComputePressure();
+  void ComputePressureForces();
 private:
   int fluidWidth;
   int fluidHeight;
   int particleSize;
+  
+  float smoothingLength = 12;
 
   std::vector<Particle*> particles;
 };
