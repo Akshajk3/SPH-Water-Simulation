@@ -1,7 +1,7 @@
 #include "Particle.h"
 
-Particle::Particle(float x, float y, int radius)
-  : pos(x, y), radius(radius)
+Particle::Particle(float x, float y, int radius, float mass)
+  : pos(x, y), radius(radius), mass(mass)
 {}
 
 Particle::~Particle()
@@ -13,7 +13,7 @@ void Particle::Update(float gravity, float deltaTime)
   vel = vec2(0, vertical_vel);
   //std::cout << vertical_vel << std::endl;
   KeepInBounds(deltaTime);
-  pos = pos + vel;
+  pos = pos + vel + force;
 }
 
 void Particle::Render(Renderer* renderer)

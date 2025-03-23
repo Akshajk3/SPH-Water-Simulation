@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL2/SDL.h>
+#include <GL/glew.h>
 #include <iostream>
 
 class Renderer
@@ -8,9 +9,8 @@ class Renderer
   public:
     Renderer(char* windowTitle, int width,int height);
 
-    SDL_Renderer* GetRenderer();
-    SDL_Window* GetWindow();
-    
+    SDL_Window* GetWindow();    
+
     bool Init();
 
     void Clear();
@@ -21,8 +21,11 @@ class Renderer
 
   private:
     SDL_Window* window;
-    SDL_Renderer* renderer;
 
+  public:
+    SDL_GLContext context;
+
+  private:
     char* windowName;
     int width;
     int height;

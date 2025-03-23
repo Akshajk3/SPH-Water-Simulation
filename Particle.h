@@ -9,7 +9,7 @@
 class Particle
 {
 public:
-  Particle(float x, float y, int radius);
+  Particle(float x, float y, int radius, float mass);
   ~Particle();
 
   void Update(float gravity, float deltaTime);
@@ -18,8 +18,10 @@ public:
 public:  
   float density;
   float pressure;
-private:
+  vec2 force;
+  float mass = 1.0f;
 
+public:
   void KeepInBounds(float deltaTime);
 
 public:

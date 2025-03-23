@@ -89,8 +89,9 @@ struct vec2
     return x * vec.x + y * vec.y;
   }
 
-  vec2 normalize(const vec2& vec) const
+  vec2 normalize() const
   {
-    return vec2(vec.x / magnitude(vec), vec.y / magnitude(vec));
+    float mag = magnitude(*this);
+    return (mag > 0) ? vec2(x / mag, y / mag) : vec2(0, 0);
   }
 };

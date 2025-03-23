@@ -6,17 +6,24 @@ Renderer::Renderer(char* windowTitle, int width, int height)
 
 bool Renderer::Init()
 {
-  window = SDL_CreateWindow(windowName, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
+  window = SDL_CreateWindow(windowName, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
   if (window == nullptr)
   {
     std::cout << "Failed to Initialze Window, Error: " << SDL_GetError() << std::endl;
     return false;
   }
 
-  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-  if (renderer == nullptr)
+  context = SDL_GL_CreateContext(window);
+  if (context == nullptr)
   {
-    std::cout << "Failed to Initialze renderer, Error: " << SDL_GetError() << std::endl;
+    std::cout << "Failed to create OpenGL context, Error: " << SDL_GetError() << std::endl;
+    return false; 
+  }
+
+  glewExperimental = GL_TRUE;
+  if (glewInit() != GLEW_OK)
+  {
+    std::cout << "Failed to initialize GLEW\n";
     return false;
   }
 
@@ -25,53 +32,37 @@ bool Renderer::Init()
 
 void Renderer::Clear()
 {
-  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-  SDL_RenderClear(renderer);
+  glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Renderer::Display()
 {
-  SDL_RenderPresent(renderer);
+  SDL_GL_SwapWindow(window);
 }
 
 void Renderer::Destroy()
 {
-  SDL_DestroyRenderer(renderer);
+  SDL_GL_DeleteContext(context);
   SDL_DestroyWindow(window);
 }
 
 void Renderer::DrawParticle(float x_center, float y_center, int radius)
 {
-  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+  glColor3f(1.0f, 1.0f, 1.0f);
 
-  int x = radius;
-  int y = 0;
-  int decision = 1 - radius;
+  glBegin(GL_TRIANGLE_FAN);
+  glVertex2f(x_center, y_center);
 
-  while (x >= y)
+  for (int i = 0; i < 360; i++)
   {
-    SDL_RenderDrawLine(renderer, x_center - x, y_center + y, x_center + x, y_center + y);
-    SDL_RenderDrawLine(renderer, x_center - x, y_center - y, x_center + x, y_center - y);
-    SDL_RenderDrawLine(renderer, x_center - y, y_center + x, x_center + y, y_center + x);
-    SDL_RenderDrawLine(renderer, x_center - y, y_center - x, x_center + y, y_center - x);
-
-    y++;
-      
-    if (decision <= 0)
-      {
-          decision += 2 * y + 1;
-      }
-      else
-      {
-          x--;
-          decision += 2 * (y - x) + 1;
-      }
+    float angle = i * M_PI / 180.0f;
+    float x = x_center + radius * std::cos(angle);
+    float y = y_center + radius * std::sin(angle);
+    glVertex2f(x, y);
   }
-}
 
-SDL_Renderer* Renderer::GetRenderer()
-{
-  return renderer;
+  glEnd();
 }
 
 SDL_Window* Renderer::GetWindow()

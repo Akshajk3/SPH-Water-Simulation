@@ -1068,5 +1068,10 @@ CMakeFiles/main.dir/Fluid.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/__random/student_t_distribution.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/__random/weibull_distribution.h \
   /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/Renderer.h \
+  /opt/homebrew/include/GL/glew.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers/glu.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers/OpenGLAvailability.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/os/availability.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl.h \
   /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/Particle.h \
   /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/vec2.h

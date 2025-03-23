@@ -145,6 +145,7 @@ main: CMakeFiles/main.dir/Fluid.cpp.o
 main: CMakeFiles/main.dir/build.make
 main: /opt/homebrew/lib/libSDL2-2.0.0.dylib
 main: /opt/homebrew/lib/libSDL2_image.dylib
+main: /opt/homebrew/lib/libGLEW.2.2.dylib
 main: CMakeFiles/main.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)

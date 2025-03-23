@@ -1,7 +1,7 @@
 #include "Fluid.h"
 
-Fluid::Fluid(int width, int height, int particle_size)
-  : fluidWidth(width), fluidHeight(height), particleSize(particle_size)
+Fluid::Fluid(int width, int height, int particle_size, float particle_mass)
+  : fluidWidth(width), fluidHeight(height), particleSize(particle_size), particleMass(particle_mass)
 {
   for (int x = 0; x < width; x++)
   {
@@ -13,10 +13,12 @@ Fluid::Fluid(int width, int height, int particle_size)
 
       double random_damp = dis(gen);
 
-      int particle_spacing = 5;
+      random_damp = 0.7;
+
+      int particle_spacing = 10;
 
       int particle_index = particles.size() + 1;
-      Particle* particle = new Particle(10 + x * particle_spacing, 10 + y * particle_spacing, particle_size);
+      Particle* particle = new Particle(100 + x * particle_spacing, 100 + y * particle_spacing, particle_size, particle_mass);
       particle->dampeningCoeff = random_damp;
       particles.push_back(particle);
     }
@@ -25,8 +27,20 @@ Fluid::Fluid(int width, int height, int particle_size)
 
 void Fluid::Update(float gravity, float deltaTime)
 {
+  ComputeDensity();
+  ComputePressure();
+  ComputePressureForces();
+
   for (auto& particle : particles)
-    particle->Update(gravity, deltaTime);
+  {
+    vec2 acceleration = particle->force / particle->mass;
+    acceleration.y += gravity;
+
+    particle->vel = particle->vel + acceleration * deltaTime;
+    particle->pos = particle->pos + particle->vel * deltaTime;
+
+    particle->KeepInBounds(deltaTime);
+  }
 }
 
 void Fluid::Render(Renderer* renderer)
@@ -100,7 +114,7 @@ void Fluid::ComputePressureForces()
         float r = sqrt(r2);
         float W_grad = (-45.0f / (M_PI * std::pow(h, 6))) * std::pow(h - r, 2);
 
-        vec2 pressureForce = -mass * ((p_i->pressure + p_j->pressure) / 2.0f) * W_grad * r_vec.normalize(r_vec);
+        vec2 pressureForce = r_vec.normalize() * (-mass * ((p_i->pressure + p_j->pressure) / 2.0f) * W_grad);
         force = force + pressureForce; 
       }
     }

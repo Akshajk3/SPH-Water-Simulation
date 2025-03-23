@@ -11,7 +11,7 @@
 class Fluid
 {
 public:
-  Fluid(int width, int height, int particle_size);
+  Fluid(int width, int height, int particle_size, float particle_mass);
 
   void Update(float gravity, float deltaTime);
   void Render(Renderer* renderer);
@@ -22,6 +22,7 @@ private:
   int fluidWidth;
   int fluidHeight;
   int particleSize;
+  float particleMass;
   
   float smoothingLength = 12;
 

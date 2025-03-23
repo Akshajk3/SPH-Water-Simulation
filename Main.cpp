@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SDL2/SDL.h>
+#include <GL/glew.h>
 
 #include "Renderer.h"
 #include "Fluid.h"
@@ -15,10 +16,13 @@ int main(int argc, char** argv)
     std::cout << "Failed to init SDL_Video: " << SDL_GetError() << std::endl;
   }
 
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
   Renderer renderer("Flip Water Sim", WIDTH, HEIGHT);
 
-  Fluid fluid(10, 10, 3);
+  Fluid fluid(10, 10, 3, 10.0);
 
   bool running = true;
 
@@ -49,13 +53,18 @@ int main(int argc, char** argv)
     }
 
     renderer.Clear();
-    fluid.Update(80, deltaTime);
+    fluid.Update(100, deltaTime);
     fluid.Render(&renderer);
     renderer.Display();
 
     deltaTime = (SDL_GetTicks() - frameStart) / 1000.0f;
 
     int frameTime = SDL_GetTicks() - frameStart;
+
+    int frameRate = 1000 / frameTime;
+    std::string windowName = "Flip Water Sim FPS: " + std::to_string(frameRate);
+    SDL_SetWindowTitle(renderer.GetWindow(), windowName.c_str());
+
     if (1000 / FPS > frameTime) 
     {
       SDL_Delay(1000/FPS - frameTime);

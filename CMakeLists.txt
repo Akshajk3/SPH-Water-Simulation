@@ -26,6 +26,10 @@ if(APPLE)
     set(SDL2_IMAGE_LIBRARY "/opt/homebrew/lib/libSDL2_image.dylib")  # Update with the correct path if needed
     set(SDL2_INCLUDE_DIR "/opt/homebrew/include/")
     set(SDL2_IMAGE_INCLUDE_DIR "/opt/homebrew/include/")
+    set(GLEW_LIBRARY "/opt/homebrew/lib/libGLEW.2.2.dylib")
+    set(GLEW_INCLUDE_DIR "/opt/homebrew/include/")
+    set(GLFW_LIBRARY "/opt/homebrew/lib/libglfw.3.dylib")
+    set(GLFW_INCLUDE_DIR "/opt/homebrew/include/")
 
     # Check if the paths were found
     if(NOT EXISTS ${SDL2_INCLUDE_DIR})
@@ -37,8 +41,8 @@ if(APPLE)
     endif()
 
     # Link SDL2 and SDL2_image libraries for macOS
-    target_include_directories(main PRIVATE ${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR})
-    target_link_libraries(main ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY})
+    target_include_directories(main PRIVATE ${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR} ${GLEW_INCLUDE_DIR})
+    target_link_libraries(main ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${GLEW_LIBRARY})
 
 # Linux (WSL) configuration
 elseif(UNIX)
@@ -59,8 +63,8 @@ elseif(UNIX)
     endif()
 
     # Link SDL2 and SDL2_image libraries for Linux (WSL)
-    target_include_directories(main PRIVATE ${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR})
-    target_link_libraries(main ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY})
+    target_include_directories(main PRIVATE ${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${GLFW_INCLUDE_DIR})
+    target_link_libraries(main ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${GLEW_LIBRARY} ${GLEW_INCLUDE_DIR})
 
 # Windows configuration
 elseif(WIN32)
