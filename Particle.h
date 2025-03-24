@@ -13,7 +13,6 @@ public:
   ~Particle();
 
   void Update(float gravity, float deltaTime);
-  void Render(Renderer* renderer);
 
 public:  
   float density;

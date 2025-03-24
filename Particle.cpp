@@ -16,11 +16,6 @@ void Particle::Update(float gravity, float deltaTime)
   pos = pos + vel + force;
 }
 
-void Particle::Render(Renderer* renderer)
-{
-  renderer->DrawParticle(pos.x, pos.y, radius);
-}
-
 void Particle::KeepInBounds(float deltaTime)
 {
   if (pos.x <= 0)

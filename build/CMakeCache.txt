@@ -81,8 +81,8 @@ CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=
 //Flags used by the linker during RELWITHDEBINFO builds.
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
-//No help, variable specified on the command line.
-CMAKE_EXPORT_COMPILE_COMMANDS:UNINITIALIZED=ON
+//Enable/Disable output of compile commands during generation.
+CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
 
 //Value Computed by CMake.
 CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/build/CMakeFiles/pkgRedirects
@@ -221,6 +221,9 @@ ClothSimulation_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 ClothSimulation_SOURCE_DIR:STATIC=/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation
+
+//Path to a library.
+OpenGL_LIBRARY:FILEPATH=/Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/System/Library/Frameworks/OpenGL.framework
 
 
 ########################

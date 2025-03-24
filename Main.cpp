@@ -20,7 +20,7 @@ int main(int argc, char** argv)
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-  Renderer renderer("Flip Water Sim", WIDTH, HEIGHT);
+  Renderer renderer("Flip Water Sim", WIDTH, HEIGHT, "../shaders/vert.glsl", "../shaders/frag.glsl");
 
   Fluid fluid(10, 10, 3, 10.0);
 

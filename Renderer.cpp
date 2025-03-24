@@ -1,7 +1,7 @@
 #include "Renderer.h"
 
-Renderer::Renderer(char* windowTitle, int width, int height)
-  :  windowName(windowTitle), width(width), height(height)
+Renderer::Renderer(char* windowTitle, int width, int height, const char* vertex_file, const char* fragment_file)
+  :  windowName(windowTitle), width(width), height(height), vertexFile(vertex_file), fragmentFile(fragment_file)
 {}
 
 bool Renderer::Init()
@@ -21,11 +21,17 @@ bool Renderer::Init()
   }
 
   glewExperimental = GL_TRUE;
-  if (glewInit() != GLEW_OK)
+  GLenum err = glewInit();
+  if (err != GLEW_OK)
   {
     std::cout << "Failed to initialize GLEW\n";
     return false;
   }
+
+  glEnable(GL_DEPTH_TEST);
+
+  if(!InitParticleData())
+    return false;  
 
   return true;
 }
@@ -47,25 +53,123 @@ void Renderer::Destroy()
   SDL_DestroyWindow(window);
 }
 
-void Renderer::DrawParticle(float x_center, float y_center, int radius)
+void Renderer::DrawParticle()
 {
-  glColor3f(1.0f, 1.0f, 1.0f);
-
-  glBegin(GL_TRIANGLE_FAN);
-  glVertex2f(x_center, y_center);
-
-  for (int i = 0; i < 360; i++)
-  {
-    float angle = i * M_PI / 180.0f;
-    float x = x_center + radius * std::cos(angle);
-    float y = y_center + radius * std::sin(angle);
-    glVertex2f(x, y);
-  }
-
-  glEnd();
+  glUseProgram(shaderProgram);
+  glBindVertexArray(VAO);
+  glDrawArrays(GL_POINTS, 0, particleVertices.size() / 2);
+  glBindVertexArray(0);
 }
 
 SDL_Window* Renderer::GetWindow()
 {
   return window;
+}
+
+void Renderer::UpdateParticles(const std::vector<std::pair<float, float>>& positions)
+{
+  particleVertices.clear();
+
+  for (const auto& [x, y] : positions)
+  {
+    particleVertices.push_back(x);
+    particleVertices.push_back(y);
+  }
+
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glBufferData(GL_ARRAY_BUFFER, particleVertices.size() * sizeof(float), particleVertices.data(), GL_DYNAMIC_DRAW);
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+}
+
+bool Renderer::InitParticleData()
+{
+  shaderProgram = LoadShader(vertexFile, fragmentFile);
+  if (shaderProgram == 0)
+  {
+    std::cout << "Failed to load shader program." << std::endl;
+    return false;
+  }
+
+  glGenVertexArrays(1, &VAO);
+  glGenBuffers(1, &VBO);
+
+  glBindVertexArray(VAO);
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+  glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+  glEnableVertexAttribArray(0);
+
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  glBindVertexArray(0);
+
+  return true;
+}
+
+GLuint Renderer::LoadShader(const char* vertexShaderSource, const char* fragmentShaderSource)
+{
+  GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+  std::string vertexSource = GetShaderSource(vertexShaderSource);
+  const char* vertexCode = vertexSource.c_str();
+  if (vertexCode == "")
+    return 0;
+  glShaderSource(vertexShader, 1, &vertexCode, nullptr);
+  glCompileShader(vertexShader);
+
+  int success;
+  glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+  if (!success)
+  {
+    char infoLog[512];
+    glGetShaderInfoLog(vertexShader, 512, nullptr, infoLog);
+    std::cout << "Error: Failed to compile vertex shader\n" << infoLog << std::endl;
+    return 0;
+  }
+
+  GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+  std::string fragmentSource = GetShaderSource(fragmentShaderSource);
+  const char* fragmentCode = fragmentSource.c_str();
+  glShaderSource(fragmentShader, 1, &fragmentCode, nullptr);
+  glCompileShader(fragmentShader);
+
+  glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+  if (!success)
+  {
+    char infoLog[512];
+    glGetShaderInfoLog(fragmentShader, 512, nullptr, infoLog);
+    std::cout << "Error: Failed to compile fragment shader\n" << infoLog << std::endl;
+    return 0;
+  }
+
+  GLuint program = glCreateProgram();
+  glAttachShader(program, vertexShader);
+  glAttachShader(program, fragmentShader);
+  glLinkProgram(program);
+
+  glGetProgramiv(program, GL_LINK_STATUS, &success);
+  if (!success)
+  {
+    char infoLog[512];
+    glGetProgramInfoLog(program, 512, nullptr, infoLog);
+    std::cout << "Error failed to compile shader program\n" << infoLog << std::endl;
+    return 0;
+  }
+
+  glDeleteShader(vertexShader);
+  glDeleteShader(fragmentShader);
+
+  return program;
+}
+
+std::string Renderer::GetShaderSource(const char* filename)
+{
+  std::ifstream file(filename);
+  if (!file)
+  {
+    std::cout << "Error: Could not open " << filename << std::endl;
+    return "";
+  }
+
+  std::stringstream buffer;
+  buffer << file.rdbuf();
+  return buffer.str();
 }

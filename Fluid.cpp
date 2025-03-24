@@ -46,12 +46,16 @@ void Fluid::Update(float gravity, float deltaTime)
 void Fluid::Render(Renderer* renderer)
 {
   float totalDensity = 0.0f;
-  for (auto& particle : particles)
+
+  std::vector<std::pair<float, float>> positions;
+
+  for (const auto& particle : particles)
   {
-    particle->Render(renderer);
-    ComputeDensity();
     totalDensity += particle->density;
+    positions.emplace_back(particle->pos.x, particle->pos.y);
   }
+
+  renderer->UpdateParticles(positions);
 
   float avgDensity = totalDensity / particles.size();
   std::cout << "Avg Density: " << avgDensity << std::endl;
