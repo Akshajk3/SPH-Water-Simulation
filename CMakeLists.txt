@@ -12,11 +12,22 @@ set(SOURCE_FILES
     Main.cpp
     Renderer.cpp
     Particle.cpp
-    Fluid.cpp 
+    Fluid.cpp
+)
+
+set (IMGUI_SOURCES
+    imgui/imgui.cpp
+    imgui/imgui_demo.cpp
+    imgui/imgui_draw.cpp
+    imgui/imgui_widgets.cpp
+    imgui/imgui_tables.cpp
+    imgui/backends/imgui_impl_sdl2.cpp
+    imgui/backends/imgui_impl_opengl3.cpp
 )
 
 # Add the executable
 add_executable(main ${SOURCE_FILES})
+target_sources(main PRIVATE ${IMGUI_SOURCES})
 
 # Platform-specific configurations
 
@@ -28,6 +39,8 @@ if(APPLE)
     set(SDL2_IMAGE_INCLUDE_DIR "/opt/homebrew/include/")
     set(GLEW_LIBRARY "/opt/homebrew/lib/libGLEW.2.2.dylib")
     set(GLEW_INCLUDE_DIR "/opt/homebrew/include/")
+    set(IMGUI_INCLUDE_DIR "imgui/")
+    set(IMGUI_SDL_INCLUDE "/opt/hoembrew/include/SDL2")    
     
     find_library(OpenGL_LIBRARY OpenGL)
 
@@ -41,7 +54,7 @@ if(APPLE)
     endif()
 
     # Link SDL2 and SDL2_image libraries for macOS
-    target_include_directories(main PRIVATE ${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR} ${GLEW_INCLUDE_DIR}) 
+    target_include_directories(main PRIVATE ${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${IMGUI_INCLUDE_DIR}) 
     target_link_libraries(main ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${GLEW_LIBRARY} ${OpenGL_LIBRARY})
 
 # Linux (WSL) configuration

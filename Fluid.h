@@ -13,18 +13,23 @@ class Fluid
 public:
   Fluid(int width, int height, int particle_size, float particle_mass);
 
-  void Update(float gravity, float deltaTime);
+  void Update(float deltaTime);
   void Render(Renderer* renderer);
   void ComputeDensity();
   void ComputePressure();
   void ComputePressureForces();
-private:
+public:
   int fluidWidth;
   int fluidHeight;
   int particleSize;
   float particleMass;
-  
-  float smoothingLength = 12;
+  float gravity = 500.0f;
+  float restDensity = 80.0f;
+  float stiffness = 500.0f;
+  float repulsionStrength = 1.0f;
+  float attractionStrength = 1.0f;
+  float viscosity = 0.1f;
+  float smoothingLength = 20.0f;
 
   std::vector<Particle*> particles;
 };

@@ -3,7 +3,7 @@
 Fluid::Fluid(int width, int height, int particle_size, float particle_mass)
   : fluidWidth(width), fluidHeight(height), particleSize(particle_size), particleMass(particle_mass)
 {
-  for (int x = 0; x < width; x++)
+ for (int x = 0; x < width; x++)
   {
     for (int y = 0; y < height; y++)
     {
@@ -25,7 +25,7 @@ Fluid::Fluid(int width, int height, int particle_size, float particle_mass)
   } 
 }
 
-void Fluid::Update(float gravity, float deltaTime)
+void Fluid::Update(float deltaTime)
 {
   ComputeDensity();
   ComputePressure();
@@ -33,7 +33,7 @@ void Fluid::Update(float gravity, float deltaTime)
 
   for (auto& particle : particles)
   {
-    vec2 acceleration = particle->force / particle->mass;
+    vec2 acceleration = particle->force / particleMass;
     acceleration.y += gravity;
 
     particle->vel = particle->vel + acceleration * deltaTime;
@@ -56,6 +56,7 @@ void Fluid::Render(Renderer* renderer)
   }
 
   renderer->UpdateParticles(positions);
+  renderer->DrawParticle(particleSize);
 
   float avgDensity = totalDensity / particles.size();
   std::cout << "Avg Density: " << avgDensity << std::endl;
@@ -87,9 +88,6 @@ void Fluid::ComputeDensity()
 
 void Fluid::ComputePressure()
 {
-  float restDensity = 100.0f;
-  float stiffness = 200.0f;
-
   for (auto& p : particles)
   {
     p->pressure = stiffness * (p->density - restDensity);
@@ -100,7 +98,7 @@ void Fluid::ComputePressureForces()
 {
   float h = smoothingLength;
   float h2 = h * h;
-  float mass = 1.0f;
+  float mass = particleMass;
 
   for (auto& p_i : particles)
   {
@@ -119,7 +117,27 @@ void Fluid::ComputePressureForces()
         float W_grad = (-45.0f / (M_PI * std::pow(h, 6))) * std::pow(h - r, 2);
 
         vec2 pressureForce = r_vec.normalize() * (-mass * ((p_i->pressure + p_j->pressure) / 2.0f) * W_grad);
-        force = force + pressureForce; 
+        force = force + pressureForce;
+        
+        // repulsion
+        if (r < (h * 0.2f))
+        {
+          float dynamicRepulsion = repulsionStrength * (1.0f / (r2 + 1e-4));
+          vec2 repulsion = r_vec.normalize() * dynamicRepulsion;
+          force = force + repulsion;
+        }
+        
+        // attraction 
+        if (r > (h * 0.7f))
+        {
+          vec2 attraction = -r_vec.normalize() * (attractionStrength * 0.5f) / (r2 + 1e-4);
+          force = force + attraction;
+        }
+
+        // viscosity
+        vec2 velocityDifference = p_i->vel - p_j->vel;
+        vec2 dampeningForce = velocityDifference * (-viscosity);
+        force = force + dampeningForce; 
       }
     }
     p_i->force = p_i->force + force;

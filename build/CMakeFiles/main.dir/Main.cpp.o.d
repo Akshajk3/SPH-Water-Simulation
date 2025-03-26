@@ -1094,4 +1094,11 @@ CMakeFiles/main.dir/Main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/__random/student_t_distribution.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/c++/v1/__random/weibull_distribution.h \
   /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/Particle.h \
-  /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/vec2.h
+  /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/vec2.h \
+  /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/imgui/imgui.h \
+  /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/imgui/imconfig.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/assert.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/_assert.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk/usr/include/_static_assert.h \
+  /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/imgui/backends/imgui_impl_sdl2.h \
+  /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/imgui/backends/imgui_impl_opengl3.h

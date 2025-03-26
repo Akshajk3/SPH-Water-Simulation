@@ -68,6 +68,11 @@ struct vec2
   {
     return magnitude(*this) > magnitude(other);
   }
+  
+  vec2 operator - () const
+  {
+    return vec2(-x, -y);
+  }
 
   vec2 min (const vec2& other) const
   {

@@ -128,12 +128,117 @@ CMakeFiles/main.dir/Fluid.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/Fluid.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/Fluid.cpp" -o CMakeFiles/main.dir/Fluid.cpp.s
 
+CMakeFiles/main.dir/imgui/imgui.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/imgui/imgui.cpp.o: /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/imgui/imgui.cpp
+CMakeFiles/main.dir/imgui/imgui.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/imgui/imgui.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/imgui/imgui.cpp.o -MF CMakeFiles/main.dir/imgui/imgui.cpp.o.d -o CMakeFiles/main.dir/imgui/imgui.cpp.o -c "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/imgui.cpp"
+
+CMakeFiles/main.dir/imgui/imgui.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/imgui/imgui.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/imgui.cpp" > CMakeFiles/main.dir/imgui/imgui.cpp.i
+
+CMakeFiles/main.dir/imgui/imgui.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/imgui/imgui.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/imgui.cpp" -o CMakeFiles/main.dir/imgui/imgui.cpp.s
+
+CMakeFiles/main.dir/imgui/imgui_demo.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/imgui/imgui_demo.cpp.o: /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/imgui/imgui_demo.cpp
+CMakeFiles/main.dir/imgui/imgui_demo.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/imgui/imgui_demo.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/imgui/imgui_demo.cpp.o -MF CMakeFiles/main.dir/imgui/imgui_demo.cpp.o.d -o CMakeFiles/main.dir/imgui/imgui_demo.cpp.o -c "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/imgui_demo.cpp"
+
+CMakeFiles/main.dir/imgui/imgui_demo.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/imgui/imgui_demo.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/imgui_demo.cpp" > CMakeFiles/main.dir/imgui/imgui_demo.cpp.i
+
+CMakeFiles/main.dir/imgui/imgui_demo.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/imgui/imgui_demo.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/imgui_demo.cpp" -o CMakeFiles/main.dir/imgui/imgui_demo.cpp.s
+
+CMakeFiles/main.dir/imgui/imgui_draw.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/imgui/imgui_draw.cpp.o: /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/imgui/imgui_draw.cpp
+CMakeFiles/main.dir/imgui/imgui_draw.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/imgui/imgui_draw.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/imgui/imgui_draw.cpp.o -MF CMakeFiles/main.dir/imgui/imgui_draw.cpp.o.d -o CMakeFiles/main.dir/imgui/imgui_draw.cpp.o -c "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/imgui_draw.cpp"
+
+CMakeFiles/main.dir/imgui/imgui_draw.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/imgui/imgui_draw.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/imgui_draw.cpp" > CMakeFiles/main.dir/imgui/imgui_draw.cpp.i
+
+CMakeFiles/main.dir/imgui/imgui_draw.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/imgui/imgui_draw.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/imgui_draw.cpp" -o CMakeFiles/main.dir/imgui/imgui_draw.cpp.s
+
+CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o: /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/imgui/imgui_widgets.cpp
+CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o -MF CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o.d -o CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o -c "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/imgui_widgets.cpp"
+
+CMakeFiles/main.dir/imgui/imgui_widgets.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/imgui/imgui_widgets.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/imgui_widgets.cpp" > CMakeFiles/main.dir/imgui/imgui_widgets.cpp.i
+
+CMakeFiles/main.dir/imgui/imgui_widgets.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/imgui/imgui_widgets.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/imgui_widgets.cpp" -o CMakeFiles/main.dir/imgui/imgui_widgets.cpp.s
+
+CMakeFiles/main.dir/imgui/imgui_tables.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/imgui/imgui_tables.cpp.o: /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/imgui/imgui_tables.cpp
+CMakeFiles/main.dir/imgui/imgui_tables.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main.dir/imgui/imgui_tables.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/imgui/imgui_tables.cpp.o -MF CMakeFiles/main.dir/imgui/imgui_tables.cpp.o.d -o CMakeFiles/main.dir/imgui/imgui_tables.cpp.o -c "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/imgui_tables.cpp"
+
+CMakeFiles/main.dir/imgui/imgui_tables.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/imgui/imgui_tables.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/imgui_tables.cpp" > CMakeFiles/main.dir/imgui/imgui_tables.cpp.i
+
+CMakeFiles/main.dir/imgui/imgui_tables.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/imgui/imgui_tables.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/imgui_tables.cpp" -o CMakeFiles/main.dir/imgui/imgui_tables.cpp.s
+
+CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o: /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/imgui/backends/imgui_impl_sdl2.cpp
+CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o -MF CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o.d -o CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o -c "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/backends/imgui_impl_sdl2.cpp"
+
+CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/backends/imgui_impl_sdl2.cpp" > CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.i
+
+CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/backends/imgui_impl_sdl2.cpp" -o CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.s
+
+CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o: /Users/akshajkanumuri/Documents/GitHub/FLIP\ Water\ Simulation/imgui/backends/imgui_impl_opengl3.cpp
+CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o -MF CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o.d -o CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o -c "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/backends/imgui_impl_opengl3.cpp"
+
+CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/backends/imgui_impl_opengl3.cpp" > CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.i
+
+CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/imgui/backends/imgui_impl_opengl3.cpp" -o CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.s
+
 # Object files for target main
 main_OBJECTS = \
 "CMakeFiles/main.dir/Main.cpp.o" \
 "CMakeFiles/main.dir/Renderer.cpp.o" \
 "CMakeFiles/main.dir/Particle.cpp.o" \
-"CMakeFiles/main.dir/Fluid.cpp.o"
+"CMakeFiles/main.dir/Fluid.cpp.o" \
+"CMakeFiles/main.dir/imgui/imgui.cpp.o" \
+"CMakeFiles/main.dir/imgui/imgui_demo.cpp.o" \
+"CMakeFiles/main.dir/imgui/imgui_draw.cpp.o" \
+"CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o" \
+"CMakeFiles/main.dir/imgui/imgui_tables.cpp.o" \
+"CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o" \
+"CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o"
 
 # External object files for target main
 main_EXTERNAL_OBJECTS =
@@ -142,12 +247,19 @@ main: CMakeFiles/main.dir/Main.cpp.o
 main: CMakeFiles/main.dir/Renderer.cpp.o
 main: CMakeFiles/main.dir/Particle.cpp.o
 main: CMakeFiles/main.dir/Fluid.cpp.o
+main: CMakeFiles/main.dir/imgui/imgui.cpp.o
+main: CMakeFiles/main.dir/imgui/imgui_demo.cpp.o
+main: CMakeFiles/main.dir/imgui/imgui_draw.cpp.o
+main: CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o
+main: CMakeFiles/main.dir/imgui/imgui_tables.cpp.o
+main: CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o
+main: CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o
 main: CMakeFiles/main.dir/build.make
 main: /opt/homebrew/lib/libSDL2-2.0.0.dylib
 main: /opt/homebrew/lib/libSDL2_image.dylib
 main: /opt/homebrew/lib/libGLEW.2.2.dylib
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/akshajkanumuri/Documents/GitHub/FLIP Water Simulation/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

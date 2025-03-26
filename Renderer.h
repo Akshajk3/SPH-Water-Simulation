@@ -11,7 +11,8 @@ class Renderer
   public:
     Renderer(char* windowTitle, int width,int height, const char* vertex_file, const char* fragment_file);
 
-    SDL_Window* GetWindow();    
+    SDL_Window* GetWindow();
+    SDL_GLContext GetContext();
 
     bool Init();
 
@@ -19,7 +20,7 @@ class Renderer
     void Display();
     void Destroy();
 
-    void DrawParticle();
+    void DrawParticle(int particle_size);
 
   private:
     SDL_Window* window;

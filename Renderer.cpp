@@ -29,6 +29,7 @@ bool Renderer::Init()
   }
 
   glEnable(GL_DEPTH_TEST);
+  glEnable(GL_PROGRAM_POINT_SIZE);
 
   if(!InitParticleData())
     return false;  
@@ -53,9 +54,11 @@ void Renderer::Destroy()
   SDL_DestroyWindow(window);
 }
 
-void Renderer::DrawParticle()
+void Renderer::DrawParticle(int particle_size)
 {
+  GLint sizeLoc = glGetUniformLocation(shaderProgram, "pointSize");
   glUseProgram(shaderProgram);
+  glUniform1f(sizeLoc, particle_size);
   glBindVertexArray(VAO);
   glDrawArrays(GL_POINTS, 0, particleVertices.size() / 2);
   glBindVertexArray(0);
@@ -66,19 +69,27 @@ SDL_Window* Renderer::GetWindow()
   return window;
 }
 
+SDL_GLContext Renderer::GetContext()
+{
+  return context;
+}
+
 void Renderer::UpdateParticles(const std::vector<std::pair<float, float>>& positions)
 {
   particleVertices.clear();
 
   for (const auto& [x, y] : positions)
   {
-    particleVertices.push_back(x);
-    particleVertices.push_back(y);
+    float x_ndc = (x / 400.0f) - 1.0f;
+    float y_ndc = 1.0f - (y / 300.0f);
+
+    particleVertices.push_back(x_ndc);
+    particleVertices.push_back(y_ndc);
   }
 
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glBufferData(GL_ARRAY_BUFFER, particleVertices.size() * sizeof(float), particleVertices.data(), GL_DYNAMIC_DRAW);
-  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 bool Renderer::InitParticleData()
