@@ -92,7 +92,7 @@ int main(int argc, char** argv)
     // Particle Size
     ImGui::SliderInt("Particle Size", &fluid.particleSize, 1.0f, 10.f);
     ImGui::SameLine();
-    ImGui::InputInt("##ParticleSizeInput", &fluid.particleSize, 0.1f, 1.0f);
+    ImGui::InputInt("##ParticleSizeInput", &fluid.particleSize, 1.0f);
 
     // Particle Mass
     ImGui::SliderFloat("Particle Mass", &fluid.particleMass, 0.0f, 1000.0f);
