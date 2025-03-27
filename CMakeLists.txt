@@ -13,6 +13,7 @@ set(SOURCE_FILES
     Renderer.cpp
     Particle.cpp
     Fluid.cpp
+    HashGrid.cpp
 )
 
 set (IMGUI_SOURCES

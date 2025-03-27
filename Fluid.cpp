@@ -1,7 +1,7 @@
 #include "Fluid.h"
 
 Fluid::Fluid(int width, int height, int particle_size, float particle_mass)
-  : fluidWidth(width), fluidHeight(height), particleSize(particle_size), particleMass(particle_mass)
+  : fluidWidth(width), fluidHeight(height), particleSize(particle_size), particleMass(particle_mass), hashGrid(20)
 {
  for (int x = 0; x < width; x++)
   {
@@ -22,11 +22,16 @@ Fluid::Fluid(int width, int height, int particle_size, float particle_mass)
       particle->dampeningCoeff = random_damp;
       particles.push_back(particle);
     }
-  } 
+  }
+
+  hashGrid.Init(particles); 
 }
 
 void Fluid::Update(float deltaTime)
 {
+  hashGrid.Clear();
+  hashGrid.ParticleToCell();
+
   ComputeDensity();
   ComputePressure();
   ComputePressureForces();
@@ -71,16 +76,20 @@ void Fluid::ComputeDensity()
   {
     p_i->density = 0.0f;
 
-    for (auto& p_j : particles)
+    std::vector<Particle*> neighbors = hashGrid.GetNeighbors(p_i);
+
+    for (auto& p_j : neighbors)
     {
+      if (p_i == p_j)
+        continue;
+
       vec2 r_vec = p_i->pos - p_j->pos;
       float r2 = r_vec.dot(r_vec);
-      
-      if(r2 < h2)
+
+      if (r2 < h2)
       {
-        float r = std::sqrt(r2);
+        float r = sqrt(r2);
         float W = (315.0f / (64.0f * M_PI * pow(h, 9))) * pow(h2 - r2, 3);
-        p_i->density += W;
       }
     }
   }
@@ -104,7 +113,9 @@ void Fluid::ComputePressureForces()
   {
     vec2 force(0.0f, 0.0f);
 
-    for (auto& p_j : particles)
+    std::vector<Particle*> neighbors = hashGrid.GetNeighbors(p_i);
+
+    for (auto& p_j : neighbors)
     {
       if (p_i == p_j) continue;
 

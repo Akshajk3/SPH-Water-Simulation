@@ -125,10 +125,24 @@ CMakeFiles/main.dir/Fluid.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/Fluid.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/clearcash/FLIP-Water-Simulation/Fluid.cpp -o CMakeFiles/main.dir/Fluid.cpp.s
 
+CMakeFiles/main.dir/HashGrid.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/HashGrid.cpp.o: /home/clearcash/FLIP-Water-Simulation/HashGrid.cpp
+CMakeFiles/main.dir/HashGrid.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/HashGrid.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/HashGrid.cpp.o -MF CMakeFiles/main.dir/HashGrid.cpp.o.d -o CMakeFiles/main.dir/HashGrid.cpp.o -c /home/clearcash/FLIP-Water-Simulation/HashGrid.cpp
+
+CMakeFiles/main.dir/HashGrid.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/HashGrid.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/clearcash/FLIP-Water-Simulation/HashGrid.cpp > CMakeFiles/main.dir/HashGrid.cpp.i
+
+CMakeFiles/main.dir/HashGrid.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/HashGrid.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/clearcash/FLIP-Water-Simulation/HashGrid.cpp -o CMakeFiles/main.dir/HashGrid.cpp.s
+
 CMakeFiles/main.dir/imgui/imgui.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/imgui/imgui.cpp.o: /home/clearcash/FLIP-Water-Simulation/imgui/imgui.cpp
 CMakeFiles/main.dir/imgui/imgui.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/imgui/imgui.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/imgui/imgui.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/imgui/imgui.cpp.o -MF CMakeFiles/main.dir/imgui/imgui.cpp.o.d -o CMakeFiles/main.dir/imgui/imgui.cpp.o -c /home/clearcash/FLIP-Water-Simulation/imgui/imgui.cpp
 
 CMakeFiles/main.dir/imgui/imgui.cpp.i: cmake_force
@@ -142,7 +156,7 @@ CMakeFiles/main.dir/imgui/imgui.cpp.s: cmake_force
 CMakeFiles/main.dir/imgui/imgui_demo.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/imgui/imgui_demo.cpp.o: /home/clearcash/FLIP-Water-Simulation/imgui/imgui_demo.cpp
 CMakeFiles/main.dir/imgui/imgui_demo.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/imgui/imgui_demo.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/imgui/imgui_demo.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/imgui/imgui_demo.cpp.o -MF CMakeFiles/main.dir/imgui/imgui_demo.cpp.o.d -o CMakeFiles/main.dir/imgui/imgui_demo.cpp.o -c /home/clearcash/FLIP-Water-Simulation/imgui/imgui_demo.cpp
 
 CMakeFiles/main.dir/imgui/imgui_demo.cpp.i: cmake_force
@@ -156,7 +170,7 @@ CMakeFiles/main.dir/imgui/imgui_demo.cpp.s: cmake_force
 CMakeFiles/main.dir/imgui/imgui_draw.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/imgui/imgui_draw.cpp.o: /home/clearcash/FLIP-Water-Simulation/imgui/imgui_draw.cpp
 CMakeFiles/main.dir/imgui/imgui_draw.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/imgui/imgui_draw.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/imgui/imgui_draw.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/imgui/imgui_draw.cpp.o -MF CMakeFiles/main.dir/imgui/imgui_draw.cpp.o.d -o CMakeFiles/main.dir/imgui/imgui_draw.cpp.o -c /home/clearcash/FLIP-Water-Simulation/imgui/imgui_draw.cpp
 
 CMakeFiles/main.dir/imgui/imgui_draw.cpp.i: cmake_force
@@ -170,7 +184,7 @@ CMakeFiles/main.dir/imgui/imgui_draw.cpp.s: cmake_force
 CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o: /home/clearcash/FLIP-Water-Simulation/imgui/imgui_widgets.cpp
 CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o -MF CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o.d -o CMakeFiles/main.dir/imgui/imgui_widgets.cpp.o -c /home/clearcash/FLIP-Water-Simulation/imgui/imgui_widgets.cpp
 
 CMakeFiles/main.dir/imgui/imgui_widgets.cpp.i: cmake_force
@@ -184,7 +198,7 @@ CMakeFiles/main.dir/imgui/imgui_widgets.cpp.s: cmake_force
 CMakeFiles/main.dir/imgui/imgui_tables.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/imgui/imgui_tables.cpp.o: /home/clearcash/FLIP-Water-Simulation/imgui/imgui_tables.cpp
 CMakeFiles/main.dir/imgui/imgui_tables.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main.dir/imgui/imgui_tables.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main.dir/imgui/imgui_tables.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/imgui/imgui_tables.cpp.o -MF CMakeFiles/main.dir/imgui/imgui_tables.cpp.o.d -o CMakeFiles/main.dir/imgui/imgui_tables.cpp.o -c /home/clearcash/FLIP-Water-Simulation/imgui/imgui_tables.cpp
 
 CMakeFiles/main.dir/imgui/imgui_tables.cpp.i: cmake_force
@@ -198,7 +212,7 @@ CMakeFiles/main.dir/imgui/imgui_tables.cpp.s: cmake_force
 CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o: /home/clearcash/FLIP-Water-Simulation/imgui/backends/imgui_impl_sdl2.cpp
 CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o -MF CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o.d -o CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.o -c /home/clearcash/FLIP-Water-Simulation/imgui/backends/imgui_impl_sdl2.cpp
 
 CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.i: cmake_force
@@ -212,7 +226,7 @@ CMakeFiles/main.dir/imgui/backends/imgui_impl_sdl2.cpp.s: cmake_force
 CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o: /home/clearcash/FLIP-Water-Simulation/imgui/backends/imgui_impl_opengl3.cpp
 CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o -MF CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o.d -o CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.o -c /home/clearcash/FLIP-Water-Simulation/imgui/backends/imgui_impl_opengl3.cpp
 
 CMakeFiles/main.dir/imgui/backends/imgui_impl_opengl3.cpp.i: cmake_force
@@ -229,6 +243,7 @@ main_OBJECTS = \
 "CMakeFiles/main.dir/Renderer.cpp.o" \
 "CMakeFiles/main.dir/Particle.cpp.o" \
 "CMakeFiles/main.dir/Fluid.cpp.o" \
+"CMakeFiles/main.dir/HashGrid.cpp.o" \
 "CMakeFiles/main.dir/imgui/imgui.cpp.o" \
 "CMakeFiles/main.dir/imgui/imgui_demo.cpp.o" \
 "CMakeFiles/main.dir/imgui/imgui_draw.cpp.o" \
@@ -244,6 +259,7 @@ main: CMakeFiles/main.dir/Main.cpp.o
 main: CMakeFiles/main.dir/Renderer.cpp.o
 main: CMakeFiles/main.dir/Particle.cpp.o
 main: CMakeFiles/main.dir/Fluid.cpp.o
+main: CMakeFiles/main.dir/HashGrid.cpp.o
 main: CMakeFiles/main.dir/imgui/imgui.cpp.o
 main: CMakeFiles/main.dir/imgui/imgui_demo.cpp.o
 main: CMakeFiles/main.dir/imgui/imgui_draw.cpp.o
@@ -257,7 +273,7 @@ main: /usr/lib/x86_64-linux-gnu/libSDL2_image.so
 main: /usr/lib/x86_64-linux-gnu/libGLEW.so
 main: /usr/lib/x86_64-linux-gnu/libOpenGL.so
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/clearcash/FLIP-Water-Simulation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

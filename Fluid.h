@@ -7,6 +7,7 @@
 
 #include "Renderer.h"
 #include "Particle.h"
+#include "HashGrid.h"
 
 class Fluid
 {
@@ -32,4 +33,5 @@ public:
   float smoothingLength = 20.0f;
 
   std::vector<Particle*> particles;
+  HashGrid hashGrid;
 };
