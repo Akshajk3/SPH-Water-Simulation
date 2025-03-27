@@ -39,6 +39,42 @@ void Init_ImGui(Renderer* renderer)
   ImGui_ImplOpenGL3_Init("#version 330 core");
 }
 
+void SaveConfig(Fluid* fluid, const char* filepath)
+{
+  std::ofstream file(filepath);
+  if (file.is_open())
+  {
+    file << fluid->particleSize << "\n";
+    file << fluid->particleMass << "\n";
+    file << fluid->gravity << "\n";
+    file << fluid->restDensity << "\n";
+    file << fluid->stiffness << "\n";
+    file << fluid->repulsionStrength << "\n";
+    file << fluid->attractionStrength << "\n";
+    file << fluid->smoothingLength << "\n";
+
+    file.close();
+  }
+}
+
+void LoadConfig(Fluid* fluid, const char* filepath)
+{
+  std::ifstream file(filepath);
+  if (file.is_open())
+  {
+    file >> fluid->particleSize;
+    file >> fluid->particleMass;
+    file >> fluid->gravity;
+    file >> fluid->restDensity;
+    file >> fluid->stiffness;
+    file >> fluid->repulsionStrength;
+    file >> fluid->attractionStrength;
+    file >> fluid->smoothingLength;
+
+    file.close();
+  }
+}
+
 int main(int argc, char** argv)
 {
   bool running = true;
@@ -63,6 +99,8 @@ int main(int argc, char** argv)
 
   Uint32 frameStart;
   float deltaTime = 0.0;
+
+  LoadConfig(&fluid, "../config.txt");
 
   while (running)
   {
@@ -128,6 +166,19 @@ int main(int argc, char** argv)
     ImGui::SliderFloat("Smoothing Length", &fluid.smoothingLength, 0.0f, 100.0f);
     ImGui::SameLine();
     ImGui::InputFloat("##SmoothingLengthInput", &fluid.smoothingLength, 0.1f, 1.0f, "%.3f");
+
+    // Save Parameters
+    if (ImGui::Button("Save Config"))
+    {
+      SaveConfig(&fluid, "../config.txt");
+    }
+
+    // Load Parameters
+    if (ImGui::Button("Load Config"))
+    {
+      LoadConfig(&fluid, "../config.txt");
+    }
+    
         
     ImGui::End();
 

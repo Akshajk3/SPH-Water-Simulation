@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Project name
-project(ClothSimulation)
+project(FluidSimulation)
 
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
@@ -65,6 +65,13 @@ elseif(UNIX)
 
     set(SDL2_INCLUDE_DIR "/usr/include/SDL2")  # Path for SDL2 headers
     set(SDL2_IMAGE_INCLUDE_DIR "/usr/include/SDL2")  # Path for SDL2_image headers (if needed)
+    
+    set(GLEW_INCLUDE_DIR "usr/include/")    
+    set(GLEW_LIBRARY "/usr/lib/x86_64-linux-gnu/libGLEW.so")
+
+    set(IMGUI_INCLUDE_DIR "imgui/")
+
+    find_library(OpenGL_LIBRARY OpenGL)
 
     # Check if the paths were found
     if(NOT EXISTS ${SDL2_INCLUDE_DIR})
@@ -76,8 +83,8 @@ elseif(UNIX)
     endif()
 
     # Link SDL2 and SDL2_image libraries for Linux (WSL)
-    target_include_directories(main PRIVATE ${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${GLFW_INCLUDE_DIR})
-    target_link_libraries(main ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${GLEW_LIBRARY} ${GLEW_INCLUDE_DIR})
+    target_include_directories(main PRIVATE ${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${IMGUI_INCLUDE_DIR})
+    target_link_libraries(main ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${GLEW_LIBRARY} ${OpenGL_LIBRARY})
 
 # Windows configuration
 elseif(WIN32)
