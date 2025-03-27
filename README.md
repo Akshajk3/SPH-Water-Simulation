@@ -1,2 +1,2 @@
-# FLIP-Water-Simulation
- A FLIP Water Simulator Made using C++ and SDL2
+# SPH-Water-Simulation
+ A SPH Water Simulator Made using C++, SDL2, OpenGL, and ImGui
