@@ -86,7 +86,7 @@ int main(int argc, char** argv)
 
   Renderer renderer("Flip Water Sim", WIDTH, HEIGHT, "../shaders/vert.glsl", "../shaders/frag.glsl");
   
-  Fluid fluid(30, 30, 3, 10.0);
+  Fluid fluid(30, 30, 3, 10.0, WIDTH, HEIGHT);
 
   if (!renderer.Init())
   {
@@ -116,6 +116,21 @@ int main(int argc, char** argv)
       {
         if (e.key.keysym.sym == SDLK_ESCAPE)
           running = false; 
+      }
+
+      if (e.type == SDL_WINDOWEVENT)
+      {
+        if (e.window.event == SDL_WINDOWEVENT_RESIZED)
+        {
+          int newWidth = e.window.data1;
+          int newHeight = e.window.data2;
+          std::cout << "Window Resized to: " << newWidth << "x" << newHeight << std::endl;
+
+          SDL_GL_SetSwapInterval(1);
+          glViewport(0, 0, newWidth, newHeight);
+
+          fluid.UpdateWindowBounds(newWidth, newHeight);
+        }
       }
     }
     
@@ -166,6 +181,10 @@ int main(int argc, char** argv)
     ImGui::SliderFloat("Smoothing Length", &fluid.smoothingLength, 0.0f, 100.0f);
     ImGui::SameLine();
     ImGui::InputFloat("##SmoothingLengthInput", &fluid.smoothingLength, 0.1f, 1.0f, "%.3f");
+
+    // Average Density
+    std::string densityStr = "Average Density: " + std::to_string(fluid.avgDensity);
+    ImGui::Text("%s", densityStr.c_str());
 
     // Save Parameters
     if (ImGui::Button("Save Config"))

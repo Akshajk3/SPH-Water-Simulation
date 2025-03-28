@@ -7,25 +7,25 @@ Particle::Particle(float x, float y, int radius, float mass)
 Particle::~Particle()
 {}
 
-void Particle::Update(float gravity, float deltaTime)
+void Particle::Update(float gravity, float deltaTime, int width, int height)
 {
   float vertical_vel = std::min(vel.y + gravity * deltaTime, terminalVelocity);
   vel = vec2(0, vertical_vel);
   //std::cout << vertical_vel << std::endl;
-  KeepInBounds(deltaTime);
+  KeepInBounds(deltaTime, width, height);
   pos = pos + vel + force;
 }
 
-void Particle::KeepInBounds(float deltaTime)
+void Particle::KeepInBounds(float deltaTime, int width, int height)
 {
   if (pos.x <= 0)
   {
     pos.x = 0;
     vel.x = -vel.x * dampeningCoeff;
   } 
-  else if (pos.x >= 800)
+  else if (pos.x >= width)
   {
-    pos.x = 800;
+    pos.x = width;
     vel.x = -vel.x * dampeningCoeff;
   }
 
@@ -34,9 +34,9 @@ void Particle::KeepInBounds(float deltaTime)
     pos.y = 0;
     vel.y = -vel.y * dampeningCoeff;
   }
-  else if (pos.y >= 600)
+  else if (pos.y >= height)
   {
-    pos.y = 600;
+    pos.y = height;
     vel.y = -vel.y * dampeningCoeff;
   }
 }

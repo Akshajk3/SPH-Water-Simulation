@@ -1,0 +1,108 @@
+#version 330 core
+
+// work group size
+layout(local_size_x = 256) in;
+
+// particle data buffer
+struct Particle {
+    vec2 position;
+    vec2 velocity;
+    vec2 force;
+    float density;
+    float pressure;
+};
+
+// shader storage buffer objects (SSBO) for particles
+layout (std430 binding = 0) buffer Particles {
+    Particle particles[];
+};
+
+uniform float particleMass;
+uniform float smoothingLength;
+uniform float restDensity;
+uniform float stiffness;
+uniform float repulsionStrength;
+uniform float attractionStrength;
+uniform float viscosity;
+uniform float deltaTime;
+uniform float gravity;
+uniform int numParticles;
+
+void main() {
+    uint id = gl_GlobalInvocationID.x;
+    if (id > numParticles)
+        return;
+
+    Particle p_i = particles[id];
+
+    // Compute Density
+    float h2 = smoothingLength * smoothingLength;
+    p_i.density = 0;
+
+    for (int j = 0; j < numParticles; j++) {
+        if (id == j)
+            continue;
+
+        Particle p_j = particles[j];
+        vec2 r_vec = p_i.position - p_j.position;
+        float r2 = dot(r_vec, r_vec);
+
+        if (r2 < h2) {
+            float r = sqrt(r2);
+            float W = (315.0 / (64.0 * 3.14159 * pow(smoothingLength, 9))) * pow(h2 - r2, 3);
+            p_i.density += W;
+        }
+    }
+
+    // Compute Pressure
+    
+    p_i.pressure = stiffness * (p_i.density - restDensity);
+
+    // Compute Pressure Forces
+    vec2 force = vec2(0.0, 0.0);
+    
+    for (int j = 0; j < numParticles; j++) {
+        if (id == j)
+            continue;
+
+        Particle p_j = particles[j];
+        vec2 r_vec = p_i.position - p_j.position;
+        float r2 = dot(r_vec, r_vec);
+
+        if (r2 < h2) {
+            float r = sqrt(r2);
+            float W_grad = (-45.0 / (3.14159 * std::pow(h, 6))) * std::pow(h - r, 2);
+
+            vec2 pressureForce = normalize(r_vec) * (-particleMass * ((p_i.pressure + p_j.pressure) / 2.0) * W_grad);
+            force += pressureForce;
+
+            // Repulsion
+            if (r < (h * 0.2)) {
+                float dynamicRepulsion = repulsionStrength * (1.0 / (r2 + 1e-4));
+                vec2 respulsion = normalize(r_vec) * dynamicRepulsion;
+                force += repulsion;
+            }
+
+            // Attraction
+            if (r > (h * 0.7)) {
+                vec2 attraction = -normalize(r_vec) * (attractionStrength * 0.5) / (r2 + 1e-4);
+                force += attraction;
+            }
+
+            // Visosity
+            vec2 velocityDifference = p_i.velocity - p_j.velocity;
+            vec2 dampeningForce = velocityDifference * (-viscosity);
+            force += dampeningForce;
+        }
+    }
+    p_i.force = force;
+
+    // Apply forces and integrate
+    vec2 acceleration = p_i.force / particleMass;
+    acceleration.y += gravity;
+
+    p_i.velocity += acceleration * deltaTime;
+    p_i.position += velocity * deltaTime;
+
+    particles[id] = p_i;
+}

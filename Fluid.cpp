@@ -1,7 +1,7 @@
 #include "Fluid.h"
 
-Fluid::Fluid(int width, int height, int particle_size, float particle_mass)
-  : fluidWidth(width), fluidHeight(height), particleSize(particle_size), particleMass(particle_mass), hashGrid(20)
+Fluid::Fluid(int width, int height, int particle_size, float particle_mass, int screen_width, int screen_height)
+  : fluidWidth(width), fluidHeight(height), particleSize(particle_size), particleMass(particle_mass), hashGrid(20), WIDTH(screen_width), HEIGHT(screen_height)
 {
  for (int x = 0; x < width; x++)
   {
@@ -24,7 +24,15 @@ Fluid::Fluid(int width, int height, int particle_size, float particle_mass)
     }
   }
 
-  hashGrid.Init(particles); 
+  hashGrid.Init(particles);
+  
+  CompileShader("../shaders/fluidSim.comp");
+}
+
+void Fluid::UpdateWindowBounds(int width, int height)
+{
+  WIDTH = width;
+  HEIGHT = height;
 }
 
 void Fluid::Update(float deltaTime)
@@ -44,7 +52,7 @@ void Fluid::Update(float deltaTime)
     particle->vel = particle->vel + acceleration * deltaTime;
     particle->pos = particle->pos + particle->vel * deltaTime;
 
-    particle->KeepInBounds(deltaTime);
+    particle->KeepInBounds(deltaTime, WIDTH, HEIGHT);
   }
 }
 
@@ -63,8 +71,7 @@ void Fluid::Render(Renderer* renderer)
   renderer->UpdateParticles(positions);
   renderer->DrawParticle(particleSize);
 
-  float avgDensity = totalDensity / particles.size();
-  std::cout << "Avg Density: " << avgDensity << std::endl;
+  avgDensity = totalDensity / particles.size();
 }
 
 void Fluid::ComputeDensity()
@@ -90,6 +97,7 @@ void Fluid::ComputeDensity()
       {
         float r = sqrt(r2);
         float W = (315.0f / (64.0f * M_PI * pow(h, 9))) * pow(h2 - r2, 3);
+        p_i->density += W;
       }
     }
   }
@@ -153,4 +161,72 @@ void Fluid::ComputePressureForces()
     }
     p_i->force = p_i->force + force;
   }
+}
+
+GLuint Fluid::CompileShader(const char* shaderPath)
+{
+  GLuint computeShader = glCreateShader(GL_COMPUTE_SHADER);
+  if (computeShader == 0) {
+    std::cout << "Error: Failed to create compute shader" << std::endl;
+    return 0;
+  }
+
+  std::string computeSource = GetShaderSource(shaderPath);
+  if (computeSource.empty()) {
+    std::cout << "Error: Shader source is empty or file could not be opened" << std::endl;
+    return 0;
+  }
+
+  const char* computeCode = computeSource.c_str();
+  glShaderSource(computeShader, 1, &computeCode, nullptr);
+  glCompileShader(computeShader);
+
+  int success;
+  glGetShaderiv(computeShader, GL_COMPILE_STATUS, &success);
+  if (!success) {
+    char infoLog[512];
+    glGetShaderInfoLog(computeShader, sizeof(infoLog), nullptr, infoLog);
+    std::cout << "Error: Failed to compile compute shader\n" << infoLog << std::endl;
+    glDeleteShader(computeShader);
+    return 0;
+  }
+
+  GLuint program = glCreateProgram();
+  if (program == 0) {
+    std::cout << "Error: Failed to create program" << std::endl;
+    glDeleteShader(computeShader);
+    return 0;
+  }
+
+  glAttachShader(program, computeShader);
+  glLinkProgram(program);
+
+  glGetProgramiv(program, GL_LINK_STATUS, &success);
+  if (!success) {
+    char infoLog[512];
+    glGetProgramInfoLog(program, sizeof(infoLog), nullptr, infoLog);
+    std::cout << "Error: Failed to link compute shader program\n" << infoLog << std::endl;
+    glDeleteProgram(program);
+    glDeleteShader(computeShader);
+    return 0;
+  }
+
+  glDeleteShader(computeShader);
+
+  return program;
+}
+
+
+std::string Fluid::GetShaderSource(const char* filename)
+{
+  std::ifstream file(filename);
+  if (!file)
+  {
+    std::cout << "Error: Could not open " << filename << std::endl;
+    return "";
+  }
+
+  std::stringstream buffer;
+  buffer << file.rdbuf();
+  return buffer.str();
 }

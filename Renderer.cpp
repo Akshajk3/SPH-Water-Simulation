@@ -6,7 +6,7 @@ Renderer::Renderer(char* windowTitle, int width, int height, const char* vertex_
 
 bool Renderer::Init()
 {
-  window = SDL_CreateWindow(windowName, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+  window = SDL_CreateWindow(windowName, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
   if (window == nullptr)
   {
     std::cout << "Failed to Initialze Window, Error: " << SDL_GetError() << std::endl;
