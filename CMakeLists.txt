@@ -17,13 +17,13 @@ set(SOURCE_FILES
 )
 
 set (IMGUI_SOURCES
-    imgui/imgui.cpp
-    imgui/imgui_demo.cpp
-    imgui/imgui_draw.cpp
-    imgui/imgui_widgets.cpp
-    imgui/imgui_tables.cpp
-    imgui/backends/imgui_impl_sdl2.cpp
-    imgui/backends/imgui_impl_opengl3.cpp
+    Dependencies/imgui/imgui.cpp
+    Dependencies/imgui/imgui_demo.cpp
+    Dependencies/imgui/imgui_draw.cpp
+    Dependencies/imgui/imgui_widgets.cpp
+    Dependencies/imgui/imgui_tables.cpp
+    Dependencies/imgui/backends/imgui_impl_sdl2.cpp
+    Dependencies/imgui/backends/imgui_impl_opengl3.cpp
 )
 
 # Add the executable
@@ -40,8 +40,8 @@ if(APPLE)
     set(SDL2_IMAGE_INCLUDE_DIR "/opt/homebrew/include/")
     set(GLEW_LIBRARY "/opt/homebrew/lib/libGLEW.2.2.dylib")
     set(GLEW_INCLUDE_DIR "/opt/homebrew/include/")
-    set(IMGUI_INCLUDE_DIR "imgui/")
-    set(IMGUI_SDL_INCLUDE "/opt/hoembrew/include/SDL2")    
+    set(IMGUI_INCLUDE_DIR "Dependencies/imgui/")
+    set(IMGUI_SDL_INCLUDE "/opt/homebrew/include/SDL2")    
     
     find_library(OpenGL_LIBRARY OpenGL)
 
@@ -70,7 +70,7 @@ elseif(UNIX)
     set(GLEW_INCLUDE_DIR "usr/include/")    
     set(GLEW_LIBRARY "/usr/lib/x86_64-linux-gnu/libGLEW.so")
 
-    set(IMGUI_INCLUDE_DIR "imgui/")
+    set(IMGUI_INCLUDE_DIR "Dependencies/imgui/")
 
     find_library(OpenGL_LIBRARY OpenGL)
 
@@ -96,6 +96,8 @@ elseif(WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mconsole")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mconsole")
 
+    add_definitions(-DSDL_STATIC)
+
     # Set paths for SDL2 and SDL2_image on Windows using .lib files for MinGW
     set(SDL2_LIBRARY "${CMAKE_SOURCE_DIR}/Dependencies/SDL/x64/SDL2.lib")  # Adjust path for MinGW
     set(SDL2_IMAGE_LIBRARY "${CMAKE_SOURCE_DIR}/Dependencies/SDL/x64/SDL2_image.lib")  # Adjust path for MinGW
@@ -104,6 +106,15 @@ elseif(WIN32)
     # Include directories for SDL2 and SDL2_image
     set(SDL2_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/Dependencies/SDL")  # Adjust path for your system
     set(SDL2_IMAGE_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/Dependencies/SDL")  # Adjust path for your system
+    
+    set(GLEW_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/Dependencies/glew/include")    
+    set(GLEW_LIBRARY "${CMAKE_SOURCE_DIR}/Dependencies/glew/lib/Release/x64/glew32s.lib")
+
+    set(IMGUI_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/Dependencies/")
+
+    set(OpenGL_LIBRARY "opengl32.lib")
+
+    target_compile_definitions(main PRIVATE GLEW_STATIC)
 
     # Check if the paths were found
     if(NOT EXISTS ${SDL2_INCLUDE_DIR})
@@ -115,7 +126,7 @@ elseif(WIN32)
     endif()
 
     # Link SDL2 and SDL2_image libraries for Windows
-    target_include_directories(main PRIVATE ${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR})
-    target_link_libraries(main ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_MAIN_LIBRARY})
+    target_include_directories(main PRIVATE ${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR} ${GLEW_INCLUDE_DIR} ${IMGUI_INCLUDE_DIR})
+    target_link_libraries(main ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_MAIN_LIBRARY} ${GLEW_LIBRARY} ${OpenGL_LIBRARY})
 
 endif()

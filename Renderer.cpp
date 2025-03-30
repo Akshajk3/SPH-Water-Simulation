@@ -34,6 +34,22 @@ bool Renderer::Init()
   if(!InitParticleData())
     return false;  
 
+  if (SDL_GL_MakeCurrent(window, context) < 0)
+  {
+      std::cout << "Failed to make OpenGL Context Current: " << SDL_GetError() << std::endl;
+      return false;
+  }
+
+  const char* version = (const char*)glGetString(GL_VERSION);
+  if (version)
+  {
+      std::cout << "OpenGL Version: " << version << std::endl;
+  }
+  else
+  {
+      std::cout << "Failed to get OpenGL Version: " << std::endl;
+  }
+
   return true;
 }
 

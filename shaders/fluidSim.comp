@@ -1,4 +1,4 @@
-#version 330 core
+#version 430 core
 
 // work group size
 layout(local_size_x = 256) in;
@@ -13,7 +13,7 @@ struct Particle {
 };
 
 // shader storage buffer objects (SSBO) for particles
-layout (std430 binding = 0) buffer Particles {
+layout (std430, binding = 0) buffer Particles {
     Particle particles[];
 };
 
@@ -30,12 +30,13 @@ uniform int numParticles;
 
 void main() {
     uint id = gl_GlobalInvocationID.x;
-    if (id > numParticles)
+    if (id >= numParticles)
         return;
 
     Particle p_i = particles[id];
 
     // Compute Density
+    float h = smoothingLength;
     float h2 = smoothingLength * smoothingLength;
     p_i.density = 0;
 
@@ -49,7 +50,7 @@ void main() {
 
         if (r2 < h2) {
             float r = sqrt(r2);
-            float W = (315.0 / (64.0 * 3.14159 * pow(smoothingLength, 9))) * pow(h2 - r2, 3);
+            float W = (315.0 / (64.0 * 3.14159 * pow(smoothingLength, 9))) * pow(h2 - r2, 3.0);
             p_i.density += W;
         }
     }
@@ -71,7 +72,7 @@ void main() {
 
         if (r2 < h2) {
             float r = sqrt(r2);
-            float W_grad = (-45.0 / (3.14159 * std::pow(h, 6))) * std::pow(h - r, 2);
+            float W_grad = (-45.0 / (3.14159 * pow(h, 6))) * pow(h - r, 2);
 
             vec2 pressureForce = normalize(r_vec) * (-particleMass * ((p_i.pressure + p_j.pressure) / 2.0) * W_grad);
             force += pressureForce;
@@ -79,7 +80,7 @@ void main() {
             // Repulsion
             if (r < (h * 0.2)) {
                 float dynamicRepulsion = repulsionStrength * (1.0 / (r2 + 1e-4));
-                vec2 respulsion = normalize(r_vec) * dynamicRepulsion;
+                vec2 repulsion = normalize(r_vec) * dynamicRepulsion;
                 force += repulsion;
             }
 
@@ -102,7 +103,7 @@ void main() {
     acceleration.y += gravity;
 
     p_i.velocity += acceleration * deltaTime;
-    p_i.position += velocity * deltaTime;
+    p_i.position += p_i.velocity * deltaTime;
 
     particles[id] = p_i;
 }

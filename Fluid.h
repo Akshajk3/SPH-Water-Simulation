@@ -21,10 +21,12 @@ public:
   void ComputeDensity();
   void ComputePressure();
   void ComputePressureForces();
+  void CleanUp();
 
 private:
   std::string GetShaderSource(const char* filename);
   GLuint CompileShader(const char* shaderPath);
+  GLuint CreateParticleSSBO();
 
 public:
   void UpdateWindowBounds(int width, int height);
@@ -46,6 +48,9 @@ public:
 
   int WIDTH;
   int HEIGHT;
+
+  GLuint particleSSBO;
+  GLuint shaderProgram;
 
   std::vector<Particle*> particles;
   HashGrid hashGrid;

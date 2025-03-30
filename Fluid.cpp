@@ -23,10 +23,12 @@ Fluid::Fluid(int width, int height, int particle_size, float particle_mass, int 
       particles.push_back(particle);
     }
   }
+  
+  particleSSBO = CreateParticleSSBO();
 
   hashGrid.Init(particles);
   
-  CompileShader("../shaders/fluidSim.comp");
+  shaderProgram = CompileShader("../shaders/fluidSim.comp");
 }
 
 void Fluid::UpdateWindowBounds(int width, int height)
@@ -35,25 +37,32 @@ void Fluid::UpdateWindowBounds(int width, int height)
   HEIGHT = height;
 }
 
+void Fluid::CleanUp()
+{
+  glDeleteBuffers(1, &particleSSBO);
+}
+
 void Fluid::Update(float deltaTime)
 {
-  hashGrid.Clear();
-  hashGrid.ParticleToCell();
+  glUseProgram(shaderProgram);
 
-  ComputeDensity();
-  ComputePressure();
-  ComputePressureForces();
+  glUniform1f(glGetUniformLocation(shaderProgram, "particleMass"), particleMass);
+  glUniform1f(glGetUniformLocation(shaderProgram, "smoothingLength"), smoothingLength);
+  glUniform1f(glGetUniformLocation(shaderProgram, "restDensity"), restDensity);
+  glUniform1f(glGetUniformLocation(shaderProgram, "stiffness"), stiffness);
+  glUniform1f(glGetUniformLocation(shaderProgram, "repulsionStrength"), repulsionStrength);
+  glUniform1f(glGetUniformLocation(shaderProgram, "attractionStrength"), attractionStrength);
+  glUniform1f(glGetUniformLocation(shaderProgram, "viscosity"), viscosity);
+  glUniform1f(glGetUniformLocation(shaderProgram, "deltaTime"), deltaTime);
+  glUniform1f(glGetUniformLocation(shaderProgram, "gravity"), gravity);
+  glUniform1i(glGetUniformLocation(shaderProgram, "numParticles"), particles.size());
 
-  for (auto& particle : particles)
-  {
-    vec2 acceleration = particle->force / particleMass;
-    acceleration.y += gravity;
+  glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleSSBO);
 
-    particle->vel = particle->vel + acceleration * deltaTime;
-    particle->pos = particle->pos + particle->vel * deltaTime;
+  GLuint workGroupSize = (GLuint)ceil(particles.size() / 256.0f);
+  glDispatchCompute(workGroupSize, 1, 1);
 
-    particle->KeepInBounds(deltaTime, WIDTH, HEIGHT);
-  }
+  glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
 }
 
 void Fluid::Render(Renderer* renderer)
@@ -161,6 +170,19 @@ void Fluid::ComputePressureForces()
     }
     p_i->force = p_i->force + force;
   }
+}
+
+GLuint Fluid::CreateParticleSSBO()
+{
+  GLuint ssbo;
+  glGenBuffers(1, &ssbo);
+  glBindBuffer(GL_SHADER_STORAGE_BUFFER, ssbo);
+  glBufferData(GL_SHADER_STORAGE_BUFFER, particles.size() * sizeof(Particle), nullptr, GL_DYNAMIC_DRAW);
+  glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, ssbo);
+
+  glBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, particles.size() * sizeof(Particle), particles.data());
+
+  return ssbo;
 }
 
 GLuint Fluid::CompileShader(const char* shaderPath)

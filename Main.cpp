@@ -21,7 +21,7 @@ int Init_SDL2()
     return -1;
   }
 
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
@@ -86,12 +86,12 @@ int main(int argc, char** argv)
 
   Renderer renderer("Flip Water Sim", WIDTH, HEIGHT, "../shaders/vert.glsl", "../shaders/frag.glsl");
   
-  Fluid fluid(30, 30, 3, 10.0, WIDTH, HEIGHT);
-
   if (!renderer.Init())
   {
     running = false;
   }
+
+  Fluid fluid(30, 30, 3, 10.0, WIDTH, HEIGHT);
 
   Init_ImGui(&renderer);
 
@@ -212,16 +212,18 @@ int main(int argc, char** argv)
 
     deltaTime = (SDL_GetTicks() - frameStart) / 1000.0f;
 
-    int frameTime = SDL_GetTicks() - frameStart;
+ /*   long double frameTime = SDL_GetTicks() - frameStart;
 
-    int frameRate = 1000 / frameTime;
+    std::cout << "Frame Time: " << frameTime << std::endl;*/
+
+    int frameRate = 1;
     std::string windowName = "Flip Water Sim FPS: " + std::to_string(frameRate);
     SDL_SetWindowTitle(renderer.GetWindow(), windowName.c_str());
 
-    if (1000 / FPS > frameTime) 
-    {
-      SDL_Delay(1000/FPS - frameTime);
-    }
+    //if (1000 / FPS > frameTime) 
+    //{
+    //  SDL_Delay(1000/FPS - frameTime);
+    //}
   }
   
 
