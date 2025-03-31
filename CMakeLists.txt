@@ -36,11 +36,14 @@ target_sources(main PRIVATE ${IMGUI_SOURCES})
 if(APPLE)
     set(SDL2_LIBRARY "/opt/homebrew/lib/libSDL2-2.0.0.dylib")  # Update with the correct path if needed
     set(SDL2_IMAGE_LIBRARY "/opt/homebrew/lib/libSDL2_image.dylib")  # Update with the correct path if needed
+
     set(SDL2_INCLUDE_DIR "/opt/homebrew/include/")
     set(SDL2_IMAGE_INCLUDE_DIR "/opt/homebrew/include/")
+
     set(GLEW_LIBRARY "/opt/homebrew/lib/libGLEW.2.2.dylib")
     set(GLEW_INCLUDE_DIR "/opt/homebrew/include/")
-    set(IMGUI_INCLUDE_DIR "Dependencies/imgui/")
+
+    set(IMGUI_INCLUDE_DIR "Dependencies/")
     set(IMGUI_SDL_INCLUDE "/opt/homebrew/include/SDL2")    
     
     find_library(OpenGL_LIBRARY OpenGL)
@@ -70,7 +73,7 @@ elseif(UNIX)
     set(GLEW_INCLUDE_DIR "usr/include/")    
     set(GLEW_LIBRARY "/usr/lib/x86_64-linux-gnu/libGLEW.so")
 
-    set(IMGUI_INCLUDE_DIR "Dependencies/imgui/")
+    set(IMGUI_INCLUDE_DIR "Dependencies/")
 
     find_library(OpenGL_LIBRARY OpenGL)
 
