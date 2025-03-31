@@ -21,7 +21,7 @@ int Init_SDL2()
     return -1;
   }
 
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
@@ -86,12 +86,12 @@ int main(int argc, char** argv)
 
   Renderer renderer("Flip Water Sim", WIDTH, HEIGHT, "../shaders/vert.glsl", "../shaders/frag.glsl");
   
-  Fluid fluid(30, 30, 3, 10.0);
-
   if (!renderer.Init())
   {
     running = false;
   }
+
+  Fluid fluid(30, 30, 3, 10.0, WIDTH, HEIGHT);
 
   Init_ImGui(&renderer);
 
@@ -116,6 +116,21 @@ int main(int argc, char** argv)
       {
         if (e.key.keysym.sym == SDLK_ESCAPE)
           running = false; 
+      }
+
+      if (e.type == SDL_WINDOWEVENT)
+      {
+        if (e.window.event == SDL_WINDOWEVENT_RESIZED)
+        {
+          int newWidth = e.window.data1;
+          int newHeight = e.window.data2;
+          std::cout << "Window Resized to: " << newWidth << "x" << newHeight << std::endl;
+
+          SDL_GL_SetSwapInterval(1);
+          glViewport(0, 0, newWidth, newHeight);
+
+          fluid.UpdateWindowBounds(newWidth, newHeight);
+        }
       }
     }
     
@@ -167,6 +182,10 @@ int main(int argc, char** argv)
     ImGui::SameLine();
     ImGui::InputFloat("##SmoothingLengthInput", &fluid.smoothingLength, 0.1f, 1.0f, "%.3f");
 
+    // Average Density
+    std::string densityStr = "Average Density: " + std::to_string(fluid.avgDensity);
+    ImGui::Text("%s", densityStr.c_str());
+
     // Save Parameters
     if (ImGui::Button("Save Config"))
     {
@@ -193,16 +212,18 @@ int main(int argc, char** argv)
 
     deltaTime = (SDL_GetTicks() - frameStart) / 1000.0f;
 
-    int frameTime = SDL_GetTicks() - frameStart;
+ /*   long double frameTime = SDL_GetTicks() - frameStart;
 
-    int frameRate = 1000 / frameTime;
+    std::cout << "Frame Time: " << frameTime << std::endl;*/
+
+    int frameRate = 1;
     std::string windowName = "Flip Water Sim FPS: " + std::to_string(frameRate);
     SDL_SetWindowTitle(renderer.GetWindow(), windowName.c_str());
 
-    if (1000 / FPS > frameTime) 
-    {
-      SDL_Delay(1000/FPS - frameTime);
-    }
+    //if (1000 / FPS > frameTime) 
+    //{
+    //  SDL_Delay(1000/FPS - frameTime);
+    //}
   }
   
 

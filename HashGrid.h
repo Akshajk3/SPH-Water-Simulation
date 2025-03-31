@@ -17,9 +17,9 @@ public:
   void Clear();
   int GridHashFromPos(vec2 pos);
   int IndexToHash(int x, int y);
-  std::vector<Particle*> GetNeighbors(int index);
+  std::vector<Particle*> GetNeighbors(Particle* particle);
   void ParticleToCell();
-  void GetContentOfCell();
+  std::vector<Particle*> GetContentOfCell(int hashID);
 
 private:
   float cellSize;
