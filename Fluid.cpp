@@ -59,8 +59,28 @@ void Fluid::Update(float deltaTime)
 
   glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleSSBO);
 
-  GLuint workGroupSize = (GLuint)ceil(particles.size() / 256.0f);
+  glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
+
+  GLuint workGroupSize = std::max(1, (int)ceil(particles.size() / 256.0f));
   glDispatchCompute(workGroupSize, 1, 1);
+
+  glBindBuffer(GL_SHADER_STORAGE_BUFFER, particleSSBO);
+  Particle* mappedParticles = (Particle*)glMapBuffer(GL_SHADER_STORAGE_BUFFER, GL_READ_WRITE);
+  if (mappedParticles)
+  {
+      for (size_t i = 0; i < particles.size(); i++)
+      {
+          particles[i]->pos = mappedParticles[i].pos;
+          particles[i]->vel = mappedParticles[i].vel;
+          particles[i]->force = mappedParticles[i].force;
+          particles[i]->density = mappedParticles[i].density;
+          particles[i]->pressure = mappedParticles[i].pressure;
+
+		      particles[i]->KeepInBounds(deltaTime, WIDTH, HEIGHT);
+      }
+
+      glUnmapBuffer(GL_SHADER_STORAGE_BUFFER);
+  }
 
   glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
 }
@@ -177,11 +197,8 @@ GLuint Fluid::CreateParticleSSBO()
   GLuint ssbo;
   glGenBuffers(1, &ssbo);
   glBindBuffer(GL_SHADER_STORAGE_BUFFER, ssbo);
-  glBufferData(GL_SHADER_STORAGE_BUFFER, particles.size() * sizeof(Particle), nullptr, GL_DYNAMIC_DRAW);
+  glBufferData(GL_SHADER_STORAGE_BUFFER, particles.size() * sizeof(Particle), particles.data(), GL_DYNAMIC_DRAW);
   glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, ssbo);
-
-  glBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, particles.size() * sizeof(Particle), particles.data());
-
   return ssbo;
 }
 

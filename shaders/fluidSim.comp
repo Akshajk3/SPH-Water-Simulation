@@ -105,5 +105,6 @@ void main() {
     p_i.velocity += acceleration * deltaTime;
     p_i.position += p_i.velocity * deltaTime;
 
+    // WRITE BACK TO SSBO
     particles[id] = p_i;
 }

@@ -212,24 +212,23 @@ int main(int argc, char** argv)
 
     deltaTime = (SDL_GetTicks() - frameStart) / 1000.0f;
 
- /*   long double frameTime = SDL_GetTicks() - frameStart;
+    int frameTime = SDL_GetTicks() - frameStart;
 
-    std::cout << "Frame Time: " << frameTime << std::endl;*/
-
-    int frameRate = 1;
+    int frameRate = 1000 / frameTime;
     std::string windowName = "Flip Water Sim FPS: " + std::to_string(frameRate);
     SDL_SetWindowTitle(renderer.GetWindow(), windowName.c_str());
 
-    //if (1000 / FPS > frameTime) 
-    //{
-    //  SDL_Delay(1000/FPS - frameTime);
-    //}
+    if (1000 / FPS > frameTime) 
+    {
+        SDL_Delay(static_cast<Uint32>((1000 / FPS) - frameTime));
+    }
   }
   
 
   ImGui_ImplOpenGL3_Shutdown();
   ImGui_ImplSDL2_Shutdown();
   ImGui::DestroyContext();
+  fluid.CleanUp();
   renderer.Destroy();
   SDL_Quit();
   return 0;
